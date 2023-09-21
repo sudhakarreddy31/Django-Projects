@@ -1,0 +1,14 @@
+{% extends 'projectapp/base.html' %}
+
+{% block body_block %}
+<h1>{{company.company}}Company Imformation</h1>
+<hr>
+
+<h2>Company :{{company.name}}</h2>
+<h2>CEO :{{company.ceo}}</h2>
+<h2>Location :{{company.location}}</h2>
+<h2>Number: {{company.number}}</h2>
+<a href="/updateview/{{company.id}}" class="btn btn-warning btn-primary">UpdateCompany</a>
+
+
+{% endblock %}
