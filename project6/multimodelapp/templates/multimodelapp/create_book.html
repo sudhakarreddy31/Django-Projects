@@ -1,0 +1,16 @@
+{% extends 'multimodelapp/index.html' %}
+{% block body_block %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+<a href="{% url 'books_lists' %}" class="btn btn-success">Insert Book</a>
+    <!-- <input type="submit" class="btn btn-success" value="Insert Book"> -->
+
+</form>
+
+
+
+
+{% endblock%}
