@@ -1,0 +1,20 @@
+{% extends "movieapp/base.html" %}
+
+{% block body_block %}
+
+<h1>Movie Detail.....</h1>
+
+<div class="Jumbotron">
+    <ul>
+        <li>Movie Title :{{movie.movie_title}}</li>
+        <li>Movie Release :{{movie.movie_release}}</li>
+        <li>Movie Actor :{{movie.movie_actor}}</li>
+        <li>Movie Director :{{movie.movie_director}}</li>
+
+    </ul>
+
+</div>
+
+
+
+{% endblock %}
