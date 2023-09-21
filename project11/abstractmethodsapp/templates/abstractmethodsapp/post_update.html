@@ -1,0 +1,14 @@
+{% extends 'abstractmethodsapp/index.html' %}
+
+{% block content %}
+
+
+<h2>Edit Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="/lists">Save</a>
+    <button type="submit">Save Changes</button>
+
+
+{% endblock %}

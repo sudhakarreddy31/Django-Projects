@@ -1,0 +1,33 @@
+{% extends 'abstractmethodsapp/index.html' %}
+
+{% block content %}
+
+<table border="2">
+    <thead>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for i in posts %}
+        <tr>
+            <td>{{i.title}}</td>
+            <td>{{i.content}}</td>
+            <td><a href="/post_update">Edit</a></td>
+            <td><a href="/post_delete">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<br><hr>
+
+
+<a href="/create_post" class="btn btn-primary" >Add New Post</a>
+
+
+
+
+
+{% endblock %}
