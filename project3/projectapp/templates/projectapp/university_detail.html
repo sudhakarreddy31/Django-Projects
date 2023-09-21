@@ -1,0 +1,11 @@
+
+{% extends "projectapp/base.html" %}
+
+{% block content %}
+  <h1>University Detail</h1>
+  <p>Name: {{ university.name }}</p>
+  <p>Location: {{ university.location }}</p>
+  <a href="{% url 'university-update' university.pk %}"class="btn btn-warning">Update</a>
+  <a href="{% url 'university-delete' university.pk %}"class="btn btn-danger">Delete</a>
+  <a href="{% url 'university-list' %}"class="btn btn-dark">Back to University List</a>
+{% endblock %}
