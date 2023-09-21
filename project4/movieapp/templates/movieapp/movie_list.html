@@ -1,0 +1,30 @@
+{% extends 'movieapp/base.html' %}
+
+{% block body_block %}
+<h1>Movie's List Information </h1>
+<hr>
+
+&nbsp;&nbsp;&nbsp;
+
+<table border="4" blue solid>
+    <thead>
+        <th>MoviesDetails</th>
+        <th>Details</th>
+        <th>Updates</th>
+        <th>Delete</th>
+    </thead>
+    <tr>
+        {%for movie in movie_list %}
+        <td>{{movie.movie_title}}</td>
+        <td><a href="/detail_view/{{movie.id}}">Details</a></td>
+        <td><a href="{{movie.id}}">Updates</a></td>
+        <td><a href="{{movie.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+{% endblock %}
