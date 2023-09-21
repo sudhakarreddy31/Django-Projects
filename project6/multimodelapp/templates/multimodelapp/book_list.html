@@ -1,0 +1,48 @@
+{% extends 'multimodelapp/index.html' %}
+
+{% block body_block %}
+
+<h1>Book's Informations</h1>
+
+<hr><hr>
+<table border="2">
+    <thead>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Published_date</th>
+        <th>Actions</th>
+    </thead>
+    <tr>
+        {% for book in books %}
+        <td>{{book.title}}</td>
+        <td>{{book.author.name}}</td>
+        {% for genre in book.genres.all %}
+            <td class="table-light">{{ genre.name }}</td>
+        {% endfor %}
+        <td>{{book.published_date}}</td>
+        <td>
+            <a href="{% url 'update_book' book.id %}" class="btn btn-success">Update</a>&nbsp;&nbsp;
+            <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+<br><br>
+
+<a href="/create_book" class="btn btn-primary">Add New Book</a>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
