@@ -1,0 +1,20 @@
+{% extends 'multimodelsapp/base.html' %}
+{% block content %}
+<h1>Customer'sForm</h1>
+<hr>
+
+<form method="post">
+    {{form.as_p}}
+    {%csrf_token%}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br><br>
+
+<a href="/customers_lists"class="btn btn-dark">BackToList</a>
+
+
+
+
+
+
+{% endblock %}

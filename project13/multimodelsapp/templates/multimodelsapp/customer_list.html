@@ -1,0 +1,36 @@
+{% extends 'multimodelsapp/base.html' %}
+{% block content %}
+<h1>Customer'sList</h1>
+<hr>
+<table border="2px">
+    <thead>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Address</th>
+        <th>Phone_Number</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for i in customers%}
+        <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.phone_number}}</td>
+        <td>
+            <a href="/customers_update/{{i.id}}"class="btn btn-primary">Update</a>&nbsp;&nbsp;<a href="/customers_delete{{i.id}}"class="btn btn-danger">Delete</a>
+        </td>
+        </tr>
+        {% endfor %}
+    
+
+    </tbody>
+
+</table>
+
+<hr>
+<a href="/customers_create"class="btn btn-success">Add New Customers</a>
+
+
+
+{% endblock %}
