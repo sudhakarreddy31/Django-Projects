@@ -1,0 +1,28 @@
+{% extends 'projectapp/base.html' %}
+
+{% block body_block %}
+    <h1>Book's Information</h1>
+    <hr>
+
+    {% for book in book_list %}
+    <ul>
+        <li>Book Title :{{book.title}}</li>
+        <li>Book Author:{{book.author}}</li>
+        <li>Book Pages :{{book.pages}}</li>
+        <li>Book Price :{{book.price}}</li>
+        <a href="/updateview/{{book.id}}">Edit</a>
+        <a href="/deleteview/{{book.id}}">Delete</a>
+    </ul>
+
+    
+
+
+    <!-- <a href="/details/{{book.id}}">{{book.title}}
+        <br><br> -->
+
+    <!-- </a> -->
+
+
+    {% endfor %}
+    <a href="/createview">Add New BooK</a>
+{% endblock %}

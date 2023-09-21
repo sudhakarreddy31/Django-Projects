@@ -1,0 +1,14 @@
+{% extends 'projectapp/base.html' %}
+
+{% block body_block %}
+
+<h1>Are You Want Delete{{company.name}}</h1>
+<form method="post">
+    {%csrf_token%}
+    <input type="submit" class="btn btn-danger btn-primary" value="Delete">
+</form>
+
+
+
+
+{% endblock%}
