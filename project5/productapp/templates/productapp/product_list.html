@@ -1,0 +1,42 @@
+{% extends "productapp/base.html" %}
+
+{% block body_block %}
+
+<h1>List's Of Products</h1>
+<hr>
+
+<table border="2">
+    <thead>
+        <th>Product Name</th>
+        <th>Product Description</th>
+        <th>Product Price</th>
+        <th>Product is_available </th>
+        <th>Actions</th>
+    </thead>
+    <tr>
+        {% for product in products %}
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.is_available}}</td>
+        <td>
+            <a href="{% url 'product_detail' id=product.id %}"class="btn btn-primary">Details</a>
+            <a href="{% url 'product_update'  id=product.id%}"class="btn btn-warning">Edit</a>
+            <a href="{% url 'product_delete' id=product.id%}"class="btn btn-danger">Delete</a>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+&nbsp;<br>
+<a href="{% url 'product_create'%}"class="btn btn-success">Add New Product</a>
+
+
+
+
+
+
+
+
+{% endblock %}
