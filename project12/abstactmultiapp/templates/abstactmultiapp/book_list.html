@@ -1,0 +1,41 @@
+{% extends 'abstactmultiapp/index.html' %}
+
+{% block content %}
+<h1>Books Informations</h1>
+<hr>
+
+<table border="2">
+    <thead>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Author</td>
+        <!-- <td>Movies</td> -->
+        <td>Actions</td>
+    </thead>
+    <tbody>
+        {% for i in books %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.author}}</td>
+            <!-- <td>{{i.movies}}</td> -->
+            <td>
+                <a href="/book_update/{{i.id}}" class="btn btn-primary">Update</a><hr>
+                <a href="/book_delete/{{i.id}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+
+</table>
+
+<br><br>
+<a href="/book_create" class="btn btn-success">Add New Books</a>
+
+
+
+
+
+
+{% endblock %}
