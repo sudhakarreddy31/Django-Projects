@@ -1,0 +1,22 @@
+{% extends 'projectapp/base.html' %}
+
+{% block body_block %}
+
+<h1>Company Information </h1>
+<hr>
+{% for company in company_list %}
+<!-- <ul>
+    <li>Company :{{company.company}}</li>
+    <li>Company :{{company.ceo}}</li>
+    <li>Company :{{company.location}}</li>
+    <li>Company :{{company.number}}</li>
+    
+</ul> -->
+<br><br><br>
+<a href="/detailview/{{company.id}}">{{company.name}}</a>
+
+
+
+{% endfor %}
+
+{% endblock %}

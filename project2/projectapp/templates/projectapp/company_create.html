@@ -1,0 +1,15 @@
+{% extends 'projectapp/base.html'%}
+
+{% block body_block %}
+
+<h1>Employee Create/Insert Form</h1>
+
+<form method="post">
+    {{form.as_p}}
+    {%csrf_token%}
+    <input type="submit" class="btn btn-lg btn-primary" value="Insert value ">
+
+</form>
+
+
+{% endblock %}
