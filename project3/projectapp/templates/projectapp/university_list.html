@@ -1,0 +1,12 @@
+{% extends "projectapp/base.html" %}
+
+{% block content %}
+  <h1>University List</h1>
+  <ul>
+    {% for university in universities %}
+      <li><a href="{% url 'university-detail' university.pk %}"class="btn btn-info">{{ university.name }}</a></li>
+      <br>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'university-add' %}" class="btn btn-success">Add University</a>
+{% endblock %}
