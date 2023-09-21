@@ -1,0 +1,29 @@
+{% extends 'ormscrud/base.html' %}
+{% block content %}
+
+<h1>Employee's Details </h1>
+<hr>
+<table border="2">
+    <thead>
+        <th>Employee NO</th>
+        <th>Employee Name</th>
+        <th>Employee Salary</th>
+        <th>Employee Address</th>
+    </thead>
+    <tbody>
+        {% for i in employees %}
+        <tr>
+            <td>{{i.eno}}</td>
+            <td>{{i.ename}}</td>
+            <td>{{i.esal}}</td>
+            <td>{{i.eaddr}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+{% endblock %}
