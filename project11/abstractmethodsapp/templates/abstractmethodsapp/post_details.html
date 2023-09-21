@@ -1,0 +1,12 @@
+{% extends 'abstractmethodsapp/index.html' %}
+
+{% block content %}
+<h2>PostDetails</h2>
+
+    <h2>{{i.title }}</h2>
+    <p>{{ i.content }}</p>
+    <p>Created at: {{ post.created_at }}</p>
+    <p>Last updated: {{ post.updated_at }}</p>
+
+
+{% endblock %}

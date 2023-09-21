@@ -1,0 +1,15 @@
+{% extends 'abstractmethodsapp/index.html' %}
+
+{% block content %}
+
+<h2>Post Create Form</h2>
+<hr>
+<form method="post" action="{% url 'create_post' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+    <a href="{% url 'lists' %}">Submit</a>
+
+</form>
+
+
+{% endblock %}
