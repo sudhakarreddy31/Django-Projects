@@ -1,0 +1,14 @@
+{% extends 'actressapp/index.html' %}
+
+{% block content %}
+<h1>Movies Details</h1>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+
+
+
+{% endblock %}
