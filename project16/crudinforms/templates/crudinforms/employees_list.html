@@ -1,0 +1,45 @@
+{% extends 'crudinforms/base.html' %}
+{% block content %}
+
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Emp Code</td>
+            <td>Mobile</td>
+            <td>Position</td>
+            <td> 
+                <a href="{% url 'employee_create' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Add New Employee
+                </a>
+            </td>
+        </tr>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{employee.fullname}}</td>
+                <td>{{employee.emp_code}}</td>
+                <td>{{employee.mobile}}</td>
+                <td>{{employee.position}}</td>
+                <td>
+                    <a href="/employee_update/{{employee.id}}" class="btn btn-success">Edit</a>
+                    <a href="/employee_delete/{{employee.id}}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </thead>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
