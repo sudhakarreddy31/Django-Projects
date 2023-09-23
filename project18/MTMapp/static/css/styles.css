@@ -1,0 +1,16 @@
+.cool-table {
+  width: 500px;
+  border: 1px solid #000;
+  background-color: blue;
+  color: purple;
+}
+
+.cool-table tr:first-child {
+  background-color: red;
+  color: green !important;
+}
+
+.cool-table tr:not(:first-child) {
+  font-size: 8px;
+  text-align: left;
+}

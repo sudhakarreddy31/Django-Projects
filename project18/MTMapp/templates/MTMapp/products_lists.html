@@ -1,0 +1,47 @@
+{% extends 'MTMapp/base.html' %}
+
+{% block content %}
+<h1>Products Lists Data..</h1>
+<hr>
+
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Manufacturer</th>
+        <th>Categories</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.manufacturer}}</td>
+            <td>
+                <ul>
+                    {% for cat in product.categories.all %} <!--  categories is product model field (manytomany fields) -->
+                    <li>{{ cat.name }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>
+                <a href="product_update/{{product.id}}" class="btn btn-warning">Update</a>
+                <a href="product_delete/{{product.id}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<br>
+<hr>
+<a href="product_create" class="btn btn-primary">Add New Product</a>
+
+
+
+
+{% endblock %}
