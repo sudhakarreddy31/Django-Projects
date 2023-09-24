@@ -1,0 +1,54 @@
+{% extends 'fieldsapp/base.html' %}
+{% block content %}
+<h1>User Profiles Data Lists...!</h1>
+<hr>
+<br>
+<table border="2">
+    <thead>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>bio</th>
+        <th>age</th>
+        <th>date_of_birth</th>
+        <th>address</th>
+        <th>books_authored</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.bio}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.date_of_birth}}</td>
+            <td>
+                {% for book in user.books_authored.all %}
+                <li>{{book.title}}</li>
+                {% endfor %}
+            </td>
+
+            <td>
+                <a href="user_update/{{user.id}}">Update</a>
+                <a href="user_delete/{{user.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+
+<hr><br>
+
+<a href="user_form">Add New User</a>
+
+
+
+
+
+
+{% endblock %}

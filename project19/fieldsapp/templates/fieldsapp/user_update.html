@@ -1,0 +1,12 @@
+{% extends 'fieldsapp/base.html' %}
+{% block content %}
+<h1>User Profiles Update Form...!</h1>
+<hr>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
