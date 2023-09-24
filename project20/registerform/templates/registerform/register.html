@@ -1,0 +1,13 @@
+{% extends 'registerform/index.html' %}
+{% block content %}
+<h1>Register Form</h1>
+<br>
+<hr>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Register</button>
+</form>
+
+{% endblock %}
