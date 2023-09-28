@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Creating Form UpDating Without Page Refreshing..!</h1>
+        <hr>
+        <form class="container" mt-5 id="post-form">
+            {% csrf_token %}
+            <div class="mb-3 mt-5">
+                <input type="text" class="form-control" name="name" id="name"  placeholder="Enter Name">
+            </div>
+            <div class="mb-3 mt-5">
+                <input type="text" class="form-control" name="roll_number" id="roll_number"  placeholder="Enter RollNumber">
+            </div>
+            <div class="mb-3 mt-5">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
+            </div> 
+            <div class="mb-3 mt-5">
+                <input type="text" class="form-control" name="marks" id="marks"  placeholder="Enter Marks">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).on('submit', '#post-form', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/studentcreate/',
+            data: {
+                name: $('#name').val(),
+                roll_number: $('#roll_number').val(),
+                email: $('#email').val(),
+                marks: $('#marks').val(),
+                csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(data) {
+                console.log('Success:', data);
+            },
+            error: function(xhr, errmsg, err) {
+                console.log('Error:', xhr.responseText);
+            }
+        });
+    });
+</script>
