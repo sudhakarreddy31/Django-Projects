@@ -1,0 +1,16 @@
+{% extends 'multiformapp/base.html' %}
+
+
+{% block content %}
+
+<h1>Second Page of Form...!</h1>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+
+
+
+{% endblock %}
