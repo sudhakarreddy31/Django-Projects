@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Include necessary CSS and JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <h1>Delete Student</h1>
+
+  <button onclick="promptDelete()">Delete Student</button>
+
+  <script type="text/javascript">
+    function promptDelete() {
+      const id = prompt('Enter the student ID to delete:');
+      if (id !== null && id !== '') {
+        deleteStudent(id);
+      }
+    }
+
+    function deleteStudent(id) {
+      const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)[1];
+
+      $.ajax({
+          type: 'POST',
+          url: `/studentdelete/${id}/`,
+          headers: {
+              'X-CSRFToken': csrfToken
+          },
+          success: function(data) {
+              console.log('Delete success:', data);
+              // Handle success - e.g., remove the deleted item from the UI
+              // You can remove the student element from the DOM if needed
+          },
+          error: function(xhr, errmsg, err) {
+              console.log('Delete error:', xhr.responseText);
+              alert('Error deleting student.');
+          }
+      });
+    }
+  </script>
+</body>
+</html>
