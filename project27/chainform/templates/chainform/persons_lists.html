@@ -1,0 +1,34 @@
+{% extends 'chainform/base.html' %}
+
+
+{% block content %}
+<h1>Person's Informations </h1>
+<hr>
+<table border="2">
+    <thead>
+        <th>Name</th>
+        <th>BirthDate</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for i in persons %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.birthdate}}</td>
+            <td>{{i.country}}</td>
+            <td>{{i.city}}</td>
+            <td>
+                <a href="person_update/{{i.id}}" class="btn btn-warning">Update</a>
+                <a href="person_delete/{{i.id}}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<hr>
+<a href="{% url 'person_create' %}" class="btn btn-primary">Add New Person</a>
+{% endblock %}
