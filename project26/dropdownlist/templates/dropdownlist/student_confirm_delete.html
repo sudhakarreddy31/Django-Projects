@@ -1,0 +1,13 @@
+{% extends 'dropdownlist/base.html' %}
+
+{% block content %}
+<h1>Are You Want Delete{{student.name}}</h1>
+<form method="post">
+    {%csrf_token%}
+    <input type="submit" class="btn btn-danger btn-primary" value="Delete">
+</form>
+
+
+
+
+{% endblock%}

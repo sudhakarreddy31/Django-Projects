@@ -1,0 +1,44 @@
+{% extends 'dropdownlist/base.html' %}
+
+
+{% block content %}
+
+
+<h2>Student Form</h2>
+<hr>
+<form method="post" id="studentForm" data-branches-url="{% url 'ajax_load_branches' %}" novalidate>
+    {% csrf_token %}
+<table>
+    {{ form.as_table }}
+</table>
+<br>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+<br>
+<a href="{% url 'student_lists' %}"class="btn btn-dark">Back</a>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    // ... rest of your JavaScript code
+
+
+    $(document).ready(function() {
+        $("#id_collage").change(function () {
+            var url = $("#studentForm").attr("data-branches-url");  
+            var collegeId = $(this).val();  
+        
+            $.ajax({                      
+                url: url,                    
+                data: {
+                    'collage': collegeId       
+                },
+                success: function (data) {  
+                    $("#id_branch").html(data);  
+                }
+            });
+        });
+    });
+    
+</script>
+
+{% endblock %}
