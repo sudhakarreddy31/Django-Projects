@@ -1,0 +1,42 @@
+{% extends 'chainform/base.html' %}
+
+
+{% block content %}
+<h1>Person's Creation Form </h1>
+<hr>
+
+<form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <hr>
+    
+    <button type="submit" class="btn btn-success">Submit</button>
+    <br><br>
+    <a href="{% url 'persons_list' %}" class="btn btn-dark">BackToList</a>
+
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_country").change(function () {
+    var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+    var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+    $.ajax({                       // initialize an AJAX request
+      url: url,                    // set the url of the request (= localhost:8000/chainform/ajax/load-cities/)
+        data: {
+        'country': countryId       // add the country id to the GET parameters
+        },
+      success: function (data) {   // `data` is the return of the `load_cities` view function
+        $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+    });
+
+    });
+</script>
+
+
+
+{% endblock %}
