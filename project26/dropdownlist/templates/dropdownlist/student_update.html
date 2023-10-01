@@ -1,0 +1,18 @@
+{% extends 'dropdownlist/base.html' %}
+
+
+{% block content %}
+
+<form method="post" >
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Save</button>
+
+</form>
+
+
+
+  <a href="{% url 'student_lists' %}">Back to Student List</a>
+
+  {% endblock %}
