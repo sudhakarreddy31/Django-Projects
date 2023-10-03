@@ -1,0 +1,36 @@
+{% extends 'testing/index.html' %}
+
+{% block content %}
+
+<h1>List's Of Items </h1>
+<hr>
+<table border="2">
+    <thead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for i in items %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.description}}</td>
+            <td>
+                <a href="{% url 'item_update' i.id %}">Edit</a>
+                <a href="{% url 'item_delete' i.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+<a href="{% url 'item_create' %}">Add New Item</a>
+
+
+
+
+
+
+
+{% endblock %}
