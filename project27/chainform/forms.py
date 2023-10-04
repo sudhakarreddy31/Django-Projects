@@ -1,3 +1,5 @@
+import datetime
+from typing import Any
 from django import forms
 
 from chainform.models import City, Person
@@ -21,3 +23,14 @@ class PersonForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name_data = self.cleaned_data['name']
+        # date = self.cleaned_data['birthdate']
+        # country = self.cleaned_data['country']
+        # city = self.cleaned_data['city']
+
+        if not name_data.replace(" ", "").isalpha():
+            raise forms.ValidationError("Name must contain only letters and spaces.")
+        
