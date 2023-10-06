@@ -1,0 +1,21 @@
+{% extends 'studentapp/base.html' %}
+
+{% block content %}
+
+<h1>Welcome To Login Form...</h1>
+<hr>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table><hr>
+        <button type="submit" class="btn btn-primary">Login</button>
+
+    </form>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'studentapp/base.html' %}
+
+{% block content %}
+
+<h1>Are You Sure Want Delete Student..?</h1>
+<hr>
+<form method="post">
+    {%csrf_token%}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+
+
+{% endblock %}

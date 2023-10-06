@@ -1,0 +1,62 @@
+{% extends 'studentapp/base.html' %}
+
+{% block content %}
+
+<h1 style="background-color: turquoise;">Welcome To Student Registration Form</h1>
+<hr>
+<div class="container">
+    <form method="post" id="personForm">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <hr>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<br>
+<a href="{% url 'student_lists' %}" class="btn btn-info">Back's To List's</a>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    // URL for loading states and cities
+    var statesUrl = "{% url 'ajax_load_states' %}";
+    var citiesUrl = "{% url 'ajax_load_cities' %}";
+
+    // Populate states based on selected country
+    $("#id_country").change(function () {
+        var countryId = $(this).val();
+
+        // Fetch states using AJAX
+        $.ajax({
+            url: statesUrl,
+            data: {'country': countryId},
+            success: function (data) {
+                $("#id_state").html(data);
+                $("#id_city").html('<option value="">Select City</option>');  // Reset cities dropdown
+            }
+        });
+    });
+
+    // Populate cities based on selected state
+    $("#id_state").change(function () {
+        var stateId = $(this).val();
+
+        // Fetch cities using AJAX
+        $.ajax({
+            url: citiesUrl,
+            data: {'state': stateId},
+            success: function (data) {
+                $("#id_city").html(data);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+{% endblock %}
