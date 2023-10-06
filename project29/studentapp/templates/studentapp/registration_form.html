@@ -1,0 +1,28 @@
+{% extends 'studentapp/base.html' %}
+
+{% block content %}
+
+<h1>Welcome To Registration Form</h1>
+<hr>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <br><hr>
+        <button type="submit" class="btn btn-primary">Register</button>
+
+    </form>
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
