@@ -1,0 +1,31 @@
+{% extends 'apiapp/base.html' %}
+
+{% block content %}
+
+<h1>Stanger Thing's Update Form ...</h1>
+<hr>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+
+    </table>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+<hr>
+
+<br>
+<a href="{% url 'stanger_lists' %}"class="btn btn-info">Back's To List's</a>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
