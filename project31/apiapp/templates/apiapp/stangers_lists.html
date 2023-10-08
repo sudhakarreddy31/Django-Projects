@@ -1,0 +1,47 @@
+{% extends 'apiapp/base.html' %}
+{% block content %}
+
+
+<style>
+    .image-cell img {
+        width: 100px; /* Set the image width to fill the container */
+        height: 100px; /* Set the image height to fill the container */
+        object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+    }
+</style>
+<h1>Welcome To Strangers Thing's Cast's</h1>
+<hr>
+<table border="2px">
+    <thead>
+        <th>Actor</th>
+        <th>Charactor Name</th>
+        <th>Actress</th>
+        <th>Charactor Name</th>
+        <th>County</th>
+        <th>Image</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for i in stangers %}
+        <tr>
+            <td>{{i.actors_name}}</td>
+            <td>{{i.actor_charactor_name}}</td>
+            <td>{{i.actress_name}}</td>
+            <td>{{i.actress_charactor_name}}</td>
+            <td>{{i.country}}</td>
+            
+            <td class="image-cell"><img src="{{ i.image.url }}" alt="Image"></td>
+            <td>
+                <a href="stanger_update/{{i.id}}/" class="btn btn-warning">Update</a>
+                <a href="stanger_delete/{{i.id}}/" class="btn btn-danger">Delete</a>
+            </td>
+        
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+<hr>
+<br>
+<a href="{% url 'stanger_create' %}" class="btn btn-primary">Add New Cast</a>
+{% endblock %}
