@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Information</title>
+</head>
+<body>
+
+<form id="personForm">
+    <label for="country">Country:</label>
+    <select id="country" name="country">
+        <option value="" disabled selected>Select a country</option>
+        {% for country in countries %}
+        <option value="{{ country.id }}">{{ country.name }}</option>
+        {% endfor %}
+    </select>
+    
+    <label for="city">City:</label>
+    <select id="city" name="city" disabled>
+        <option value="" disabled selected>Select a city</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name">
+    
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name">
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    
+    <button type="submit">Submit</button>
+    </form>
+
+
+    <script>
+        $(document).ready(function() {
+          $('#country').change(function() {
+            var countryId = $(this).val();
+            if (countryId) {
+              $('#city').attr('disabled', false);
+              $.ajax({
+                url: `/countries/${countryId}/cities/`,
+                type: 'GET',
+                success: function(data) {
+                  $('#city').empty().append('<option value="" disabled selected>Select a city</option>');
+                  $.each(data, function(key, value) {
+                    $('#city').append('<option value="' + value.id + '">' + value.name + '</option>');
+                  });
+                }
+              });
+            } else {
+              $('#city').attr('disabled', true);
+              $('#city').empty().append('<option value="" disabled selected>Select a country first</option>');
+            }
+          });
+      
+          $('#personForm').submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serializeArray();
+            $.ajax({
+              url: '/persons/',
+              type: 'POST',
+              data: formData,
+              success: function(data) {
+                console.log('Person created:', data);
+              }
+            });
+          });
+        });
+      </script>
+      
+
+
+</body>
+</html>
