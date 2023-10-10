@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+    {% csrf_token %}
+    <table>
+        <select id="city_dropdown" name="city">
+            {{ city_dropdown_list|safe }}
+        </select>
+        
+        <select id="city_dropdown">
+            <option value="" selected>Select City</option>
+        </select>
+    </table>
+    <button type="submit">Save</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Bind change event to country dropdown
+        $("#country_dropdown").change(function () {
+            var selectedCountry = $(this).val();
+
+            // AJAX request to get cities based on selected country
+            $.ajax({
+                url: `/ajax/load-cities/?country=${selectedCountry}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Process the data and populate the city dropdown
+                    var cityDropdown = $("#city_dropdown");
+                    cityDropdown.empty();
+
+                    if (selectedCountry === "") {
+                        // Display all cities if country is not selected
+                        for (var i = 0; i < data.length; i++) {
+                            cityDropdown.append(`<option value="${data[i].id}">${data[i].name}</option>`);
+                        }
+                    } else {
+                        // Display only cities for the selected country
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].country === selectedCountry) {
+                                cityDropdown.append(`<option value="${data[i].id}">${data[i].name}</option>`);
+                            }
+                        }
+                    }
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{% load static %}
+
+
+{% for city in city_data %}
+<option value="{{ city.id }}">{{ city.name }}</option>
+{% endfor %}
